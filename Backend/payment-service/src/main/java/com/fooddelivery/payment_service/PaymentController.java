@@ -29,19 +29,19 @@ public class PaymentController {
         Order order = client.orders.create(options);
         return order.toString();
     }
-}
 
-@PostMapping("/verify")
-public String verifyPayment(@RequestBody VerifyRequest request) {
-    try {
-        JSONObject options = new JSONObject();
-        options.put("razorpay_order_id", request.getOrderId());
-        options.put("razorpay_payment_id", request.getPaymentId());
-        options.put("razorpay_signature", request.getSignature());
+    @PostMapping("/verify")
+    public String verifyPayment(@RequestBody VerifyRequest request) {
+        try {
+            JSONObject options = new JSONObject();
+            options.put("razorpay_order_id", request.getOrderId());
+            options.put("razorpay_payment_id", request.getPaymentId());
+            options.put("razorpay_signature", request.getSignature());
 
-        boolean isValid = Utils.verifyPaymentSignature(options, keySecret);
-        return isValid ? "Payment verified successfully" : "Payment verification failed";
-    } catch (Exception e) {
-        return "Verification error: " + e.getMessage();
+            boolean isValid = Utils.verifyPaymentSignature(options, keySecret);
+            return isValid ? "Payment verified successfully" : "Payment verification failed";
+        } catch (Exception e) {
+            return "Verification error: " + e.getMessage();
+        }
     }
 }
