@@ -13,6 +13,11 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
+    @GetMapping
+    public List<Order> getAll() {
+        return orderRepository.findAll();
+    }
+
     @PostMapping
     public Order placeOrder(@RequestBody Order order) {
         order.setStatus(OrderStatus.PLACED);
