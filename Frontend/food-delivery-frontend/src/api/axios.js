@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8888",
+  baseURL: "https://api-gateway-nul6.onrender.com",
 });
 
 api.interceptors.request.use((config) => {
