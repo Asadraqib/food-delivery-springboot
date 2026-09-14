@@ -23,6 +23,12 @@ public class JwtAuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         String path = request.getRequestURI();
 
+        // Let preflight requests through untouched
+        if (request.getMethod().equals("OPTIONS")) {
+            chain.doFilter(req, res);
+            return;
+        }
+
         // Let register/login through without a token — you can't have a token before logging in!
         if (path.startsWith("/auth")) {
             chain.doFilter(req, res);
@@ -38,4 +44,5 @@ public class JwtAuthFilter implements Filter {
 
         chain.doFilter(req, res);
     }
+    
 }
