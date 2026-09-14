@@ -8,21 +8,21 @@ spring:
         webmvc:
           routes:
             - id: auth-service
-              uri: http://auth-service:8080
+              uri: https://auth-service-xwcs.onrender.com
               predicates:
                 - Path=/auth,/auth/**
 
             - id: restaurant-service
-              uri: http://restaurant-service:8081
+              uri: https://restaurant-service-ofy0.onrender.com
               predicates:
                 - Path=/restaurants,/restaurants/**
 
             - id: order-service
-              uri: http://order-service:8082
+              uri: https://order-service-0z4f.onrender.com
               predicates:
                 - Path=/orders,/orders/**
 
             - id: payment-service
-              uri: http://payment-service:8083
+              uri: https://payment-service-61hu.onrender.com
               predicates:
                 - Path=/payments,/payments/**
