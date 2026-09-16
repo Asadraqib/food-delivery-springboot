@@ -19,6 +19,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
+                "https://api-gateway-nul6.onrender.com",
                 "https://food-delivery-microservices.netlify.app"
         ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
