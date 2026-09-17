@@ -3,31 +3,39 @@ import { Link } from "react-router-dom";
 export default function RestaurantCard({ restaurant }) {
   return (
     <Link to={`/restaurants/${restaurant.id}`} className="rcard">
-      <div className="rcard__top">
-        <h2>{restaurant.name}</h2>
-        <span className={`tag ${restaurant.open === false ? "tag--closed" : ""}`}>
+      <div className="rcard__header">
+        <div className="rcard__image">🍽️</div>
+        <span className={`tag ${restaurant.open === false ? "tag--closed" : "tag--open"}`}>
           {restaurant.open === false ? "Closed" : "Open"}
         </span>
       </div>
-      <p className="rcard__meta">
-        {restaurant.cuisine} · {restaurant.address}
-      </p>
-      <p className="rcard__rating">★ {restaurant.rating ?? "—"}</p>
+      <div className="rcard__content">
+        <h3>{restaurant.name}</h3>
+        <p className="rcard__meta">
+          {restaurant.cuisine} · {restaurant.address}
+        </p>
+        <div className="rcard__footer">
+          <span className="rcard__rating">⭐ {restaurant.rating ?? "—"}</span>
+          <span className="rcard__delivery">📍 3-5 mins</span>
+        </div>
+      </div>
 
       <style>{`
         .rcard {
           display: block;
-          border: 2px solid var(--hairline);
-          border-radius: var(--radius);
+          border: none;
+          border-radius: var(--radius-lg);
           padding: 1.5rem;
           text-decoration: none;
-          color: var(--paper);
+          color: var(--text-dark);
           transition: all var(--transition-base);
-          background: var(--surface);
+          background: var(--white);
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          box-shadow: var(--shadow-sm);
         }
+
         .rcard::before {
           content: '';
           position: absolute;
@@ -35,53 +43,94 @@ export default function RestaurantCard({ restaurant }) {
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(135deg, rgba(240, 169, 59, 0), rgba(240, 169, 59, 0.05));
+          background: linear-gradient(135deg, rgba(255, 140, 66, 0), rgba(255, 140, 66, 0.05));
           opacity: 0;
           transition: opacity var(--transition-base);
           pointer-events: none;
         }
+
         .rcard:hover {
-          border-color: var(--turmeric);
-          box-shadow: var(--shadow-md);
-          transform: translateY(-2px);
+          box-shadow: var(--shadow-lg);
+          transform: translateY(-4px);
+          border-color: var(--primary);
         }
+
         .rcard:hover::before {
           opacity: 1;
         }
-        .rcard__top {
+
+        .rcard__header {
           display: flex;
-          align-items: baseline;
+          align-items: flex-start;
           justify-content: space-between;
-          gap: 0.75rem;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
         }
-        .rcard__top h2 {
-          margin: 0;
+
+        .rcard__image {
+          font-size: 2.5rem;
+          line-height: 1;
+        }
+
+        .rcard__content {
+          position: relative;
+          z-index: 1;
+        }
+
+        .rcard__content h3 {
+          margin: 0 0 0.5rem 0;
           font-size: 1.25rem;
-          flex: 1;
+          color: var(--text-dark);
         }
+
         .rcard__meta {
           margin: 0;
           font-size: 0.9rem;
-          color: var(--paper-muted);
+          color: var(--text-muted);
           line-height: 1.4;
         }
+
+        .rcard__footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid var(--border-light);
+        }
+
         .rcard__rating {
-          margin: 0.75rem 0 0;
-          color: var(--turmeric);
           font-weight: 600;
+          color: var(--primary);
           font-size: 0.95rem;
         }
-        .tag--closed {
-          color: #ff9884;
-          border-color: var(--chili);
-          background: rgba(214, 72, 47, 0.1);
+
+        .rcard__delivery {
+          font-size: 0.85rem;
+          color: var(--text-muted);
         }
-        @media (max-width: 640px) {
+
+        .tag--open {
+          background: rgba(76, 175, 80, 0.1);
+          color: var(--success);
+          border: 1px solid var(--success);
+        }
+
+        .tag--closed {
+          background: rgba(255, 68, 68, 0.1);
+          color: #ff4444;
+          border: 1px solid #ff4444;
+        }
+
+        @media (max-width: 768px) {
           .rcard {
             padding: 1.25rem;
           }
-          .rcard__top h2 {
+
+          .rcard__image {
+            font-size: 2rem;
+          }
+
+          .rcard__content h3 {
             font-size: 1.1rem;
           }
         }

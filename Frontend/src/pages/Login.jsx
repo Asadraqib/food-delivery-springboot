@@ -26,41 +26,71 @@ export default function Login() {
   }
 
   return (
-    <div className="page page--narrow">
-      <h1>Welcome back</h1>
-      <p>Log in to reorder from your favourite kitchens.</p>
-
-      {error && <div className="form-error">{error}</div>}
-
-      <form onSubmit={handleLogin}>
-        <div className="field">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <div className="page">
+      <div className="auth-container">
+        <div className="auth-header">
+          <h1>🍔 Tiffin</h1>
+          <p>Welcome Back!</p>
+          <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>
+            Sign in to satisfy your cravings
+          </p>
         </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
-          {loading ? "Logging in…" : "Log in"}
-        </button>
-      </form>
 
-      <p className="form-footnote">
-        New here? <Link to="/register">Create an account</Link>
-      </p>
+        {error && <div className="form-error">{error}</div>}
+
+        <form onSubmit={handleLogin}>
+          <div className="field">
+            <input
+              id="email"
+              type="email"
+              placeholder="Email or Phone"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="field">
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div style={{ textAlign: "right", marginBottom: "1.5rem" }}>
+            <Link to="#" style={{ fontSize: "0.85rem" }}>
+              Forgot Password?
+            </Link>
+          </div>
+
+          <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
+            {loading ? "Signing In..." : "Sign In"}
+          </button>
+        </form>
+
+        <div className="auth-divider">
+          <span>or continue with</span>
+        </div>
+
+        <div className="social-auth">
+          <button className="social-btn" type="button" title="Google">
+            G
+          </button>
+          <button className="social-btn" type="button" title="Apple">
+            🍎
+          </button>
+          <button className="social-btn" type="button" title="Facebook">
+            f
+          </button>
+        </div>
+
+        <p className="form-footnote">
+          New to Tiffin? <Link to="/register">Create Account</Link>
+        </p>
+      </div>
     </div>
   );
 }

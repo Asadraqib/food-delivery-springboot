@@ -24,78 +24,150 @@ export default function Restaurants() {
   });
 
   return (
-    <div className="page">
-      <h1>What are you in the mood for?</h1>
-      <p>Browse kitchens near you and order in a few taps.</p>
+    <div className="restaurants-page">
+      <div className="restaurants-hero">
+        <h1>What are you in the mood for?</h1>
+        <p>Browse kitchens near you and order in a few taps.</p>
+      </div>
 
-      <input
-        type="text"
-        placeholder="Search restaurants or cuisines"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="restaurants__search"
-      />
-
-      {loading && <div className="state-block">Loading restaurants…</div>}
-      {error && <div className="form-error">{error}</div>}
-
-      {!loading && !error && filtered.length === 0 && (
-        <div className="state-block">
-          No restaurants match your search yet — try a different term, or add
-          one through the Restaurant Service API.
+      <div className="restaurants-container">
+        <div className="restaurants-search-wrapper">
+          <input
+            type="text"
+            placeholder="🔍 Search restaurants or cuisines..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="restaurants__search"
+          />
         </div>
-      )}
 
-      <div className="restaurants__grid">
-        {filtered.map((r) => (
-          <RestaurantCard key={r.id} restaurant={r} />
-        ))}
+        {loading && <div className="state-block">Loading restaurants…</div>}
+        {error && <div className="form-error">{error}</div>}
+
+        {!loading && !error && filtered.length === 0 && (
+          <div className="state-block">
+            No restaurants match your search yet — try a different term, or add
+            one through the Restaurant Service API.
+          </div>
+        )}
+
+        {!loading && !error && filtered.length > 0 && (
+          <div className="restaurants__grid">
+            {filtered.map((r) => (
+              <RestaurantCard key={r.id} restaurant={r} />
+            ))}
+          </div>
+        )}
       </div>
 
       <style>{`
+        .restaurants-page {
+          flex: 1;
+          width: 100%;
+          background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .restaurants-hero {
+          text-align: center;
+          padding: 3rem 2rem;
+          color: var(--white);
+        }
+
+        .restaurants-hero h1 {
+          font-size: 2.5rem;
+          color: var(--white);
+          margin-bottom: 0.5rem;
+        }
+
+        .restaurants-hero p {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 1.1rem;
+          margin: 0;
+        }
+
+        .restaurants-container {
+          flex: 1;
+          max-width: var(--max-width);
+          margin: 0 auto;
+          width: 100%;
+          padding: 2rem;
+        }
+
+        .restaurants-search-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2.5rem;
+        }
+
         .restaurants__search {
           width: 100%;
-          max-width: 420px;
-          background: var(--surface);
-          border: 2px solid var(--hairline);
-          border-radius: var(--radius-sm);
-          padding: 0.9em 1.1em;
-          color: var(--paper);
-          margin-bottom: 2.5rem;
+          max-width: 500px;
+          background: var(--white);
+          border: 2px solid transparent;
+          border-radius: var(--radius-full);
+          padding: 1.1em 1.5em;
+          color: var(--text-dark);
           font-size: 1rem;
           transition: all var(--transition-fast);
+          box-shadow: var(--shadow-md);
         }
+
         .restaurants__search::placeholder {
-          color: rgba(185, 171, 150, 0.6);
+          color: var(--text-muted);
         }
+
         .restaurants__search:hover {
-          border-color: rgba(185, 171, 150, 0.3);
+          box-shadow: var(--shadow-lg);
         }
+
         .restaurants__search:focus {
           outline: none;
-          border-color: var(--turmeric);
-          background-color: rgba(52, 44, 35, 0.8);
-          box-shadow: 0 0 0 3px rgba(240, 169, 59, 0.1);
+          border-color: var(--primary);
+          box-shadow: var(--shadow-lg), 0 0 0 4px rgba(255, 140, 66, 0.1);
         }
+
         .restaurants__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 1.5rem;
           animation: slideUp var(--transition-slow);
         }
-        @media (max-width: 768px) {
-          .restaurants__grid {
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1rem;
-          }
+
+        .state-block {
+          background: var(--white);
+          border: 2px dashed var(--border-light);
+          border-radius: var(--radius-lg);
+          padding: 3rem 2rem;
+          text-align: center;
+          color: var(--text-muted);
+          box-shadow: var(--shadow-sm);
         }
-        @media (max-width: 640px) {
+
+        .state-block a {
+          color: var(--primary);
+          font-weight: 600;
+          text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+          .restaurants-hero {
+            padding: 2rem 1.5rem;
+          }
+
+          .restaurants-hero h1 {
+            font-size: 1.8rem;
+          }
+
           .restaurants__grid {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
-          .restaurants__search {
-            max-width: 100%;
+
+          .restaurants-container {
+            padding: 1.5rem;
           }
         }
       `}</style>

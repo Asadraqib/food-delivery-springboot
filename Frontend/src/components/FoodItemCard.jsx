@@ -20,7 +20,7 @@ export default function FoodItemCard({ dish, quantityInCart, onAdd, onChangeQuan
           </button>
         </div>
       ) : (
-        <button className="btn btn-outline" onClick={onAdd}>
+        <button className="btn btn-primary btn-small" onClick={onAdd}>
           Add
         </button>
       )}
@@ -31,22 +31,27 @@ export default function FoodItemCard({ dish, quantityInCart, onAdd, onChangeQuan
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
-          padding: 1.25rem 0;
-          border-bottom: 1px solid var(--hairline);
-          transition: background var(--transition-fast);
-          margin: 0 -1rem;
-          padding: 1.25rem 1rem;
-          border-radius: var(--radius-sm);
+          padding: 1.25rem;
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius);
+          background: var(--white);
+          transition: all var(--transition-fast);
+          margin-bottom: 0.75rem;
         }
+
         .fcard:hover {
-          background: rgba(52, 44, 35, 0.5);
+          background: rgba(255, 140, 66, 0.02);
+          border-color: var(--primary-light);
+          box-shadow: var(--shadow-sm);
         }
+
         .fcard__info {
           display: flex;
           align-items: flex-start;
           gap: 1rem;
           flex: 1;
         }
+
         .fcard__dot {
           width: 12px;
           height: 12px;
@@ -56,42 +61,50 @@ export default function FoodItemCard({ dish, quantityInCart, onAdd, onChangeQuan
           border-radius: 50%;
           transition: transform var(--transition-fast);
         }
+
         .fcard__dot--veg {
-          border-color: var(--cardamom);
-          background: rgba(127, 160, 111, 0.2);
+          border-color: var(--success);
+          background: rgba(76, 175, 80, 0.2);
         }
+
         .fcard__dot--nonveg {
-          border-color: var(--chili);
-          background: rgba(214, 72, 47, 0.2);
+          border-color: #ff4444;
+          background: rgba(255, 68, 68, 0.2);
         }
+
         .fcard__name {
           margin: 0;
-          font-weight: 500;
+          font-weight: 600;
           font-size: 1rem;
+          color: var(--text-dark);
         }
+
         .fcard__price {
           margin: 0.3em 0 0;
-          color: var(--paper-muted);
+          color: var(--text-muted);
           font-size: 0.85rem;
         }
+
         .fcard__stepper {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          border: 2px solid var(--turmeric-dim);
-          border-radius: var(--radius-sm);
-          padding: 0.35em 0.5em;
-          background: rgba(240, 169, 59, 0.05);
+          border: 2px solid var(--primary);
+          border-radius: var(--radius-full);
+          padding: 0.35em 0.6em;
+          background: rgba(255, 140, 66, 0.05);
           transition: all var(--transition-fast);
         }
+
         .fcard__stepper:hover {
-          background: rgba(240, 169, 59, 0.1);
+          background: rgba(255, 140, 66, 0.1);
           box-shadow: var(--shadow-xs);
         }
+
         .fcard__stepper button {
           background: none;
           border: none;
-          color: var(--turmeric);
+          color: var(--primary);
           font-size: 1.1rem;
           cursor: pointer;
           line-height: 1;
@@ -100,24 +113,31 @@ export default function FoodItemCard({ dish, quantityInCart, onAdd, onChangeQuan
           display: flex;
           align-items: center;
           justify-content: center;
+          font-weight: 700;
         }
+
         .fcard__stepper button:hover {
           transform: scale(1.2);
-          color: #ffb94f;
+          color: var(--primary-dark);
         }
+
         .fcard__stepper button:active {
           transform: scale(0.95);
         }
+
         .fcard__stepper span {
           min-width: 1.5em;
           text-align: center;
           font-weight: 600;
           font-size: 0.95rem;
+          color: var(--primary);
         }
+
         @media (max-width: 640px) {
           .fcard {
             flex-wrap: wrap;
           }
+
           .fcard__info {
             width: 100%;
           }

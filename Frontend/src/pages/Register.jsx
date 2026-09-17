@@ -8,16 +8,23 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [agreed, setAgreed] = useState(false);
   const navigate = useNavigate();
+
+  const passwordStrength = password.length >= 8 ? "Strong" : password.length >= 4 ? "Medium" : "";
 
   async function handleRegister(e) {
     e.preventDefault();
     setError("");
+
+    if (!agreed) {
+      setError("You must agree to the Terms & Privacy Policy");
+      return;
+    }
+
     setLoading(true);
     try {
       await api.post("/auth/register", { name, email, password });
-      // Auth Service's /register returns a plain success message, not a
-      // token, so send them to log in with the account they just made.
       navigate("/login");
     } catch (err) {
       setError("Couldn't create that account. The email may already be registered.");
@@ -27,52 +34,100 @@ export default function Register() {
   }
 
   return (
-    <div className="page page--narrow">
-      <h1>Create your account</h1>
-      <p>Takes less than a minute.</p>
-
-      {error && <div className="form-error">{error}</div>}
-
-      <form onSubmit={handleRegister}>
-        <div className="field">
-          <label htmlFor="name">Full name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+    <div className="page">
+      <div className="auth-container">
+        <div className="auth-header">
+          <h1>🍔 Tiffin</h1>
+          <p>Create Account</p>
+          <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>
+            Join the feast and get fast delivery
+          </p>
         </div>
-        <div className="field">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={4}
-          />
-        </div>
-        <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
-          {loading ? "Creating account…" : "Create account"}
-        </button>
-      </form>
 
-      <p className="form-footnote">
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+        {error && <div className="form-error">{error}</div>}
+
+        <form onSubmit={handleRegister}>
+          <div className="field">
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="field">
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="field">
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              pattern="[0-9]{10}"
+              title="Please enter a valid 10-digit phone number"
+            />
+          </div>
+
+          <div className="field">
+            <div style={{ position: "relative" }}>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={4}
+              />
+              {passwordStrength && <div className="password-strength">{passwordStrength} ✓</div>}
+            </div>
+          </div>
+
+          <div className="terms-checkbox">
+            <input
+              type="checkbox"
+              id="terms"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              required
+            />
+            <label htmlFor="terms" style={{ margin: 0, cursor: "pointer" }}>
+              I agree to the <Link to="#">Terms & Privacy Policy</Link>
+            </label>
+          </div>
+
+          <button className="btn btn-primary btn-block" type="submit" disabled={loading || !agreed}>
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
+
+        <div className="auth-divider">
+          <span>or sign up with</span>
+        </div>
+
+        <div className="social-auth">
+          <button className="social-btn" type="button" title="Google">
+            G
+          </button>
+          <button className="social-btn" type="button" title="Apple">
+            🍎
+          </button>
+          <button className="social-btn" type="button" title="Facebook">
+            f
+          </button>
+        </div>
+
+        <p className="form-footnote">
+          Already have an account? <Link to="/login">Sign In</Link>
+        </p>
+      </div>
     </div>
   );
 }
