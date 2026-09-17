@@ -47,26 +47,48 @@ export default function OrderHistory() {
 
       <style>{`
         .history__list {
-          margin-top: 1.5rem;
-          max-width: 560px;
+          margin-top: 2rem;
+          max-width: 600px;
         }
         .history__row {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1rem 0;
-          border-bottom: 1px solid var(--hairline);
+          padding: 1.25rem 1.5rem;
+          border: 1px solid var(--hairline);
+          border-radius: var(--radius);
           text-decoration: none;
           color: var(--paper);
+          transition: all var(--transition-base);
+          background: var(--surface);
+          margin-bottom: 1rem;
+          cursor: pointer;
+        }
+        .history__row:hover {
+          border-color: var(--turmeric);
+          box-shadow: var(--shadow-md);
+          transform: translateY(-2px);
         }
         .history__id {
           margin: 0;
-          font-weight: 500;
+          font-weight: 600;
+          font-size: 1rem;
         }
         .history__items {
-          margin: 0.2em 0 0;
+          margin: 0.35em 0 0;
           font-size: 0.85rem;
           color: var(--paper-muted);
+        }
+        @media (max-width: 640px) {
+          .history__row {
+            padding: 1rem 1.25rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+          }
+          .history__id {
+            font-size: 0.95rem;
+          }
         }
       `}</style>
     </div>

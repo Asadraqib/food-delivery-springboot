@@ -58,25 +58,54 @@ export default function RestaurantMenu() {
 
       <style>{`
         .menu__back {
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
           margin-bottom: 1.5rem;
           font-size: 0.9rem;
           color: var(--paper-muted);
           text-decoration: none;
+          transition: all var(--transition-fast);
+          font-weight: 500;
         }
         .menu__back:hover {
-          color: var(--paper);
+          color: var(--turmeric);
+          margin-left: -0.25rem;
         }
         .menu__list {
-          margin-top: 1.5rem;
-          max-width: 560px;
+          margin-top: 2rem;
+          max-width: 600px;
+          padding: 1.5rem;
+          background: var(--surface);
+          border-radius: var(--radius);
+          border: 1px solid var(--hairline);
         }
         .menu__cart-bar {
           position: fixed;
           bottom: 1.5rem;
           left: 50%;
           transform: translateX(-50%);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+          box-shadow: var(--shadow-lg);
+          animation: slideUp var(--transition-base);
+          z-index: 50;
+          padding: 1em 2em;
+        }
+        .menu__cart-bar:hover {
+          transform: translateX(-50%) translateY(-2px);
+          box-shadow: var(--shadow-xl);
+        }
+        @media (max-width: 640px) {
+          .menu__list {
+            padding: 1rem;
+          }
+          .menu__cart-bar {
+            left: 1.5rem;
+            right: 1.5rem;
+            transform: none;
+          }
+          .menu__cart-bar:hover {
+            transform: translateY(-2px);
+          }
         }
       `}</style>
     </div>

@@ -57,16 +57,46 @@ export default function Restaurants() {
           width: 100%;
           max-width: 420px;
           background: var(--surface);
-          border: 1px solid var(--hairline);
-          border-radius: var(--radius);
-          padding: 0.7em 0.9em;
+          border: 2px solid var(--hairline);
+          border-radius: var(--radius-sm);
+          padding: 0.9em 1.1em;
           color: var(--paper);
-          margin-bottom: 2rem;
+          margin-bottom: 2.5rem;
+          font-size: 1rem;
+          transition: all var(--transition-fast);
+        }
+        .restaurants__search::placeholder {
+          color: rgba(185, 171, 150, 0.6);
+        }
+        .restaurants__search:hover {
+          border-color: rgba(185, 171, 150, 0.3);
+        }
+        .restaurants__search:focus {
+          outline: none;
+          border-color: var(--turmeric);
+          background-color: rgba(52, 44, 35, 0.8);
+          box-shadow: 0 0 0 3px rgba(240, 169, 59, 0.1);
         }
         .restaurants__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-          gap: 1rem;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.5rem;
+          animation: slideUp var(--transition-slow);
+        }
+        @media (max-width: 768px) {
+          .restaurants__grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+          }
+        }
+        @media (max-width: 640px) {
+          .restaurants__grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .restaurants__search {
+            max-width: 100%;
+          }
         }
       `}</style>
     </div>
