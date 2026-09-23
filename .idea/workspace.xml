@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dcb396ca-8151-4b8d-a3ac-0adf901e4336" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/auth-service/src/main/java/com/fooddelivery/auth_service/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/RestaurantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/RestaurantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/restaurant-service/src/main/java/com/fooddelivery/restaurant_service/RestaurantRepository.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="108" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000397138017407" />
+      <entry key="MS500" value="1.1317614279113422" />
+      <entry key="S2" value="1.602486157571172" />
+      <entry key="S5" value="1.8166311129724542" />
+      <entry key="S10" value="1.9130475036453967" />
+      <entry key="S30" value="2.1995368497502508" />
+      <entry key="S60" value="2.5898091741401736" />
+      <entry key="M2" value="3.0529478033420245" />
+      <entry key="M5" value="3.5341564116092115" />
+      <entry key="M10" value="3.7490653067526787" />
+      <entry key="M15" value="3.8283934148389953" />
+      <entry key="M30" value="3.911953689815102" />
+      <entry key="H1" value="3.955399607353477" />
+      <entry key="H2" value="3.977553378075778" />
+      <entry key="H4" value="3.9887398145396658" />
+      <entry key="D1" value="3.9981181580419096" />
+      <entry key="W1" value="3.9997310391496517" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="8.501470345183563E-4" />
+      <entry key="MS500" value="0.24534593829461868" />
+      <entry key="S2" value="0.9183567457679506" />
+      <entry key="S5" value="1.4100908906724263" />
+      <entry key="S10" value="1.677227297113435" />
+      <entry key="S30" value="2.1117272075427063" />
+      <entry key="S60" value="2.5436446055769153" />
+      <entry key="M2" value="3.028637007070867" />
+      <entry key="M5" value="3.5239061310516404" />
+      <entry key="M10" value="3.7438198004433008" />
+      <entry key="M15" value="3.8248665153207546" />
+      <entry key="M30" value="3.9101744192760175" />
+      <entry key="H1" value="3.954505844356455" />
+      <entry key="H2" value="3.9771054422725305" />
+      <entry key="H4" value="3.9885155802133347" />
+      <entry key="D1" value="3.998080748406532" />
+      <entry key="W1" value="3.9997256940006376" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3Jdokdfc7jg5F3pRmBsU29FYQ2n" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/asadr/OneDrive/Documents/GitHub/food-delivery-springboot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dcb396ca-8151-4b8d-a3ac-0adf901e4336" name="Changes" comment="" />
+      <created>1790000453371</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1790000453371</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
