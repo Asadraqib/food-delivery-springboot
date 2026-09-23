@@ -13,13 +13,18 @@ public class RestaurantController {
         this.restaurantRepository = restaurantRepository;
     }
 
+    @GetMapping("/owner/{email}")
+    public Restaurant getByOwner(@PathVariable String email) {
+        return restaurantRepository.findByOwnerEmail(email).orElse(null);
+    }
+
     @GetMapping
     public List<Restaurant> getAll() {
         return restaurantRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Restaurant getOne(@PathVariable Long id) {
+    public Restaurant getOne(@PathVariable String id) {
         return restaurantRepository.findById(id).orElse(null);
     }
 
@@ -29,13 +34,13 @@ public class RestaurantController {
     }
 
     @PutMapping("/{id}")
-    public Restaurant update(@PathVariable Long id, @RequestBody Restaurant updated) {
+    public Restaurant update(@PathVariable String id, @RequestBody Restaurant updated) {
         updated.setId(id);
         return restaurantRepository.save(updated);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable String id) {
         restaurantRepository.deleteById(id);
     }
 }

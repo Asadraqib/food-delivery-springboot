@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { decodeToken } from "../utils/jwt";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("CUSTOMER");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -15,11 +17,19 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await api.post("/auth/login", { email, password });
-      localStorage.setItem("token", res.data);
+      const token = res.data;
+      localStorage.setItem("token", token);
       localStorage.setItem("userEmail", email);
-      navigate("/restaurants");
+
+      const decoded = decodeToken(token);
+      const actualRole = decoded?.role || "CUSTOMER";
+      localStorage.setItem("role", actualRole);
+
+      // Verify role if specific login was intended, otherwise follow token
+      if (actualRole === "RESTAURANT_ADMIN") navigate("/restaurant-dashboard");
+      else navigate("/restaurants");
     } catch (err) {
-      setError("That email and password don't match. Try again.");
+      setError("Invalid email or password. Please check your credentials.");
     } finally {
       setLoading(false);
     }
@@ -30,20 +40,24 @@ export default function Login() {
       <div className="auth-container">
         <div className="auth-header">
           <h1>🍔 Tiffin</h1>
-          <p>Welcome Back!</p>
-          <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>
-            Sign in to satisfy your cravings
-          </p>
+          <p>Login to {role === "RESTAURANT_ADMIN" ? "Restaurant Portal" : "your account"}</p>
         </div>
 
         {error && <div className="form-error">{error}</div>}
 
         <form onSubmit={handleLogin}>
           <div className="field">
+            <label htmlFor="role">Login as</label>
+            <select id="role" value={role} onChange={(e) => setRole(e.target.value)}>
+              <option value="CUSTOMER">Customer</option>
+              <option value="RESTAURANT_ADMIN">Restaurant Admin</option>
+            </select>
+          </div>
+          <div className="field">
             <input
               id="email"
               type="email"
-              placeholder="Email or Phone"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -60,35 +74,13 @@ export default function Login() {
             />
           </div>
 
-          <div style={{ textAlign: "right", marginBottom: "1.5rem" }}>
-            <Link to="#" style={{ fontSize: "0.85rem" }}>
-              Forgot Password?
-            </Link>
-          </div>
-
           <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
             {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
 
-        <div className="auth-divider">
-          <span>or continue with</span>
-        </div>
-
-        <div className="social-auth">
-          <button className="social-btn" type="button" title="Google">
-            G
-          </button>
-          <button className="social-btn" type="button" title="Apple">
-            🍎
-          </button>
-          <button className="social-btn" type="button" title="Facebook">
-            f
-          </button>
-        </div>
-
-        <p className="form-footnote">
-          New to Tiffin? <Link to="/register">Create Account</Link>
+        <p className="form-footnote" style={{ marginTop: "1rem" }}>
+          New here? <Link to="/register">Create Account</Link>
         </p>
       </div>
     </div>

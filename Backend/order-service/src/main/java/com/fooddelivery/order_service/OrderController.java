@@ -43,4 +43,19 @@ public class OrderController {
         order.setStatus(status);
         return orderRepository.save(order);
     }
+
+    @GetMapping("/restaurant/{restaurantId}")
+    public List<Order> getOrdersByRestaurant(@PathVariable Long restaurantId) {
+        return orderRepository.findByRestaurantId(restaurantId);
+    }
+
+    @GetMapping("/active")
+    public List<Order> getActiveOrders() {
+        // Updated to include READY_FOR_DELIVERY for Delivery Partners to see
+        return orderRepository.findByStatusIn(List.of(
+            OrderStatus.PREPARING,
+            OrderStatus.READY_FOR_DELIVERY,
+            OrderStatus.OUT_FOR_DELIVERY
+        ));
+    }
 }

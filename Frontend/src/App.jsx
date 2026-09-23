@@ -10,6 +10,7 @@ import RestaurantMenu from "./pages/RestaurantMenu";
 import Cart from "./pages/Cart";
 import OrderHistory from "./pages/OrderHistory";
 import OrderTracking from "./pages/OrderTracking";
+import RestaurantDashboard from "./pages/RestaurantDashboard";
 
 export default function App() {
   return (
@@ -58,6 +59,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <OrderTracking />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant-dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["RESTAURANT_ADMIN"]}>
+                <RestaurantDashboard />
               </ProtectedRoute>
             }
           />

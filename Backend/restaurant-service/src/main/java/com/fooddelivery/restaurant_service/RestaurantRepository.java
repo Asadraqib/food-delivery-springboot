@@ -1,6 +1,9 @@
 package com.fooddelivery.restaurant_service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.Optional;
 
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+public interface RestaurantRepository extends MongoRepository<Restaurant, String> {
+
+    Optional<Restaurant> findByOwnerEmail(String email);
 }
