@@ -5,27 +5,42 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { totalCount } = useCart();
   const isLoggedIn = Boolean(localStorage.getItem("token"));
+  const role = localStorage.getItem("role");
 
   function handleLogout() {
     localStorage.removeItem("token");
     localStorage.removeItem("userEmail");
+    localStorage.removeItem("role");
     navigate("/login");
   }
 
   return (
     <header className="navbar">
-      <Link to="/restaurants" className="navbar__brand">
+      <Link to={role === "RESTAURANT_OWNER" ? "/restaurant-dashboard" : role === "DELIVERY_PARTNER" ? "/delivery-dashboard" : "/restaurants"} className="navbar__brand">
         🍔 Tiffin
       </Link>
 
       {isLoggedIn && (
         <nav className="navbar__links">
-          <Link to="/restaurants">Restaurants</Link>
-          <Link to="/orders">Your Orders</Link>
-          <Link to="/cart" className="navbar__cart">
-            🛒 Cart
-            {totalCount > 0 && <span className="navbar__cart-count">{totalCount}</span>}
-          </Link>
+          {role === "CUSTOMER" && (
+            <>
+              <Link to="/restaurants">Restaurants</Link>
+              <Link to="/orders">Your Orders</Link>
+              <Link to="/cart" className="navbar__cart">
+                🛒 Cart
+                {totalCount > 0 && <span className="navbar__cart-count">{totalCount}</span>}
+              </Link>
+            </>
+          )}
+
+          {role === "RESTAURANT_OWNER" && (
+            <Link to="/restaurant-dashboard">Dashboard</Link>
+          )}
+
+          {role === "DELIVERY_PARTNER" && (
+            <Link to="/delivery-dashboard">Deliveries</Link>
+          )}
+
           <button className="btn btn-secondary navbar__logout" onClick={handleLogout}>
             Logout
           </button>

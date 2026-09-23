@@ -4,7 +4,7 @@ import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-  const { items, restaurantName, updateQuantity, totalAmount, clearCart } = useCart();
+  const { items, restaurantId, restaurantName, updateQuantity, totalAmount, clearCart } = useCart();
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -71,6 +71,7 @@ export default function Cart() {
       // Step 4: only now record the order in order-service.
       const orderPayload = {
         customerEmail: localStorage.getItem("userEmail"),
+        restaurantId,
         totalAmount,
         items: items.map((i) => ({
           foodName: i.name,
@@ -215,7 +216,6 @@ export default function Cart() {
           font-size: 1.4rem;
           font-weight: 600;
           padding: 1.5rem 1.5rem;
-          border-top: 2px solid var(--hairline);
           margin-bottom: 2rem;
           background: var(--surface);
           border: 1px solid var(--hairline);
