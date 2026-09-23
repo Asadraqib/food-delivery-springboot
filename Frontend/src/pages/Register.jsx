@@ -6,6 +6,7 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("CUSTOMER");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -24,7 +25,7 @@ export default function Register() {
 
     setLoading(true);
     try {
-      await api.post("/auth/register", { name, email, password });
+      await api.post("/auth/register", { name, email, password, role });
       navigate("/login");
     } catch (err) {
       setError("Couldn't create that account. The email may already be registered.");
@@ -88,6 +89,28 @@ export default function Register() {
               />
               {passwordStrength && <div className="password-strength">{passwordStrength} ✓</div>}
             </div>
+          </div>
+
+          <div className="field">
+            <label htmlFor="role" style={{ marginBottom: "0.5rem", display: "block", fontWeight: 500 }}>
+              I am a
+            </label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "0.75rem 1rem",
+                borderRadius: "var(--radius-sm, 8px)",
+                border: "1px solid var(--hairline, #ddd)",
+                fontSize: "1rem",
+                background: "var(--surface, #fff)",
+              }}
+            >
+              <option value="CUSTOMER">Customer</option>
+              <option value="RESTAURANT_ADMIN">Restaurant Admin</option>
+            </select>
           </div>
 
           <div className="terms-checkbox">
